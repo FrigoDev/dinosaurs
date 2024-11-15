@@ -30,3 +30,27 @@
 
 
 // On button click, prepare and display infographic
+
+
+//Create Dinosaur class
+class Dinosaur {
+    constructor(species, weight, height, diet, where, when, fact) {
+        this.species = species;
+        this.weight = weight;
+        this.height = height;
+        this.diet = diet;
+        this.where = where;
+        this.when = when;
+        this.fact = fact;
+    }
+}
+
+//Create Human class
+class Human {
+    constructor(name, weight, height, diet) {
+        this.name = name;
+        this.weight = weight;
+        this.height = height;
+        this.diet = diet;
+    }
+}
