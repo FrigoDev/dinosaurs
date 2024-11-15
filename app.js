@@ -82,3 +82,23 @@ function compareDiet(dino, human) {
         return `Tu eres ${human.diet}, mientras que ${dino.species} era ${dino.diet}.`;
     }
 }
+
+function generateInfoCard(entity) {
+    if(entity instanceof Dinosaur) {
+        return `
+          **${entity.species}**
+          * Peso: ${entity.weight} Kg
+          * Altura: ${entity.height} cm
+          * Dieta: ${entity.where}
+          * Época: ${entity.when}
+          * Dato curioso: ${entity.fact}  
+        `;
+    } else if(entity instanceof Human) {
+        return `
+          **${entity.name}**
+          * Peso: ${entity.weight} Kg
+          * Altura: ${entity.height} cm
+          * Dieta: ${entity.diet}
+        `;
+    }
+}
