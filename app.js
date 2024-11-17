@@ -1,5 +1,39 @@
 
-    // Create Dino Constructor
+// Create Dino Constructor
+class Dinosaur {
+    constructor(species, weight, height, diet, where, when, fact) {
+        this.species = species;
+        this.weight = weight;
+        this.height = height;
+        this.diet = diet;
+        this.where = where;
+        this.when = when;
+        this.fact = fact;
+    }
+}
+
+// Load Dino Data from dino.json
+const loadDinoData = async () => {
+    try {
+        const response = await fetch('dino.json');
+        const data = await response.json();
+        return data.Dinos.map(dino => 
+            new Dinosaur(
+                dino.species,
+                dino.weight,
+                dino.height,
+                dino.diet,
+                dino.where,
+                dino.when,
+                dino.fact
+            )
+        );
+    } catch (error) {
+        console.error("Error loading dino data:", error);
+    }
+};
+
+loadDinoData().then(dinos => console.log(dinos));
 
 
     // Create Dino Objects
@@ -30,75 +64,3 @@
 
 
 // On button click, prepare and display infographic
-
-
-//Create Dinosaur class
-class Dinosaur {
-    constructor(species, weight, height, diet, where, when, fact) {
-        this.species = species;
-        this.weight = weight;
-        this.height = height;
-        this.diet = diet;
-        this.where = where;
-        this.when = when;
-        this.fact = fact;
-    }
-}
-
-//Create Human class
-class Human {
-    constructor(name, weight, height, diet) {
-        this.name = name;
-        this.weight = weight;
-        this.height = height;
-        this.diet = diet;
-    }
-}
-
-function compareWeight(dino, human) {
-    if(dino.weight > human.weight) {
-        return `Mi dieta está funcionando... al menos comparada con la de un ${dino.species}.`;
-    } else if(dino.weight < human.weight) {
-        return `Soy tan pesado que podria aplastar a un ${dino.species} con solo mirarlo.`
-    } else {
-        return `Soy un ${dino.species} disfrazado de humano. ¡O al revés!`
-    }
-}
-
-function compareHeight(dino, human) {
-    if(dino.height > human.height) {
-        return `Soy un enano comparado con ${dino.species}.`
-    } else if(dino.height < human.height) {
-        return `Soy tan alto que podria tocar el cielo... ¡y la cabeza de un${dino.species}.`
-    } else {
-        return `¡Coincidencia! Tú y ${dino.species} son de la misma altura.`
-    }
-}
-
-function compareDiet(dino, human) {
-    if(dino.diet == human.diet) {
-        return `¡Ambos son ${dino.diet}! ¡Coincidencia no lo creo!`;
-    } else {
-        return `Tu eres ${human.diet}, mientras que ${dino.species} era ${dino.diet}.`;
-    }
-}
-
-function generateInfoCard(entity) {
-    if(entity instanceof Dinosaur) {
-        return `
-          **${entity.species}**
-          * Peso: ${entity.weight} Kg
-          * Altura: ${entity.height} cm
-          * Dieta: ${entity.where}
-          * Época: ${entity.when}
-          * Dato curioso: ${entity.fact}  
-        `;
-    } else if(entity instanceof Human) {
-        return `
-          **${entity.name}**
-          * Peso: ${entity.weight} Kg
-          * Altura: ${entity.height} cm
-          * Dieta: ${entity.diet}
-        `;
-    }
-}
