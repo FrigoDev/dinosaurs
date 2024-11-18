@@ -10,6 +10,37 @@ class Dinosaur {
         this.when = when;
         this.fact = fact;
     }
+
+     // Method for weight comparison
+    compareWeight(humanWeight) {
+        if (this.weight > humanWeight) {
+            return `Mi dieta está funcionando... al menos comparada con la de un ${this.species}. ¡Me supera por ${this.weight - humanWeight} libras más!`;
+        } else if (this.weight < humanWeight) {
+            return `Soy tan pesado que podria aplastar a un ${this.species} con solo mirarlo.`;
+        } else {
+            return `Soy un ${this.species} disfrazado de humano. ¡O al revés!`;
+        }
+    }
+
+    // Method for height comparison
+    compareHeight(humanHeight) {
+        if (this.height > humanHeight) {
+            return `Soy un enano comparado con ${this.species} me saca ${this.height - humanHeight} pulgadas.`;
+        } else if (this.height < humanHeight) {
+            return `Soy tan alto que podria tocar el cielo... ¡y la cabeza de un ${this.species}!`;
+        } else {
+            return `¡Coincidencia! Tú y ${this.species} son de la misma altura.`;
+        }
+    }
+
+    // Method for diet comparison 
+    compareDiet(humanDiet) {
+        if (this.diet === humanDiet) {
+            return `¡Tú y el ${this.species} tienen una dieta similar: ${this.diet}!¡Coincidencia no lo creo!`;
+        } else {
+            return `${this.species} era un ${this.diet}, mientras que tú eres ${humanDiet}.`;
+        }
+    }
 }
 
 // Load Dino Data from dino.json
@@ -98,8 +129,15 @@ const getHumanData = () => {
     // Remove form from screen
 
 // On button click, prepare and display infographic
-document.getElementById('btn').addEventListener('click', () => {
+document.getElementById('btn').addEventListener('click', async () => {
     human = getHumanData();
     console.log("Human Data:", human);
+
+    const dinos = await loadDinoData();
+    dinos.forEach(dino => {
+        console.log(dino.compareWeight(human.weight));
+        console.log(dino.compareHeight(human.height));
+        console.log(dino.compareDiet(human.diet));
+    });
 });
 
