@@ -61,3 +61,5 @@ Algunas propuestas podrían ser validar los datos del formulario para asegurar q
 ### Control de versiones
 
 Se evaluara el uso de Git desde el principio. Asegúrate de hacer commits a menudo y de usar mensajes de commit bien formateados que se ajusten a nuestra Guía de Estilo Git.
+
+### Rama De PR 
