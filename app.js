@@ -44,25 +44,38 @@ let human = {}; // Will store user data
 
 // Use IIFE to get human data from form
 const getHumanData = () => {
-    return (function() {
-        // Capture data from the form fields
-        const name = document.getElementById('name').value;
-        const feet = parseInt(document.getElementById('feet').value || 0, 10);
-        const inches = parseInt(document.getElementById('inches').value || 0, 10);
-        const weight = parseInt(document.getElementById('weight').value || 0, 10);
-        const diet = document.getElementById('diet').value.toLowerCase();
 
-        // Calculate height in inches
-        const height = feet * 12 + inches;
+    // Capture data from the form fields
+    const name = document.getElementById('name').value.trim();
+    const feet = parseInt(document.getElementById('feet').value || 0, 10);
+    const inches = parseInt(document.getElementById('inches').value || 0, 10);
+    const weight = parseInt(document.getElementById('weight').value || 0, 10);
+    const diet = document.getElementById('diet').value.toLowerCase();
 
-        // Return the constructed human object
-        return {
-            name,
-            height,
-            weight,
-            diet
-        };
-    })();
+    // Validate that all fields are valid
+    if (!name) {
+        alert("Por favor, ingresa tu nombre.");
+        return null;
+    }
+    if (feet <= 0 && inches <= 0) {
+        alert("Por favor, ingresa una altura válida.");
+        return null;
+    }
+    if (weight <= 0) {
+        alert("Por favor, ingresa un peso válido.");
+        return null;
+    }
+
+    // Calculate height in inches
+    const height = feet * 12 + inches;
+
+    // Return the constructed human object
+    return {
+        name,
+        height,
+        weight,
+        diet
+    };
 };
 
 
