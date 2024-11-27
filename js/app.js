@@ -2,6 +2,7 @@ import Dino from "./modules/dino.js";
 import { handleFormSubmission } from "./modules/FormHandler.js";
 import { renderGrid } from "./modules/gridManager.js";
 import { saveGridHistory, loadGridHistory, renderGridHistory } from "./modules/gridHistory.js";
+import { getRandomElement } from "./modules/utils.js";
 
 const getDinoData = async () => {
   try {
@@ -36,9 +37,10 @@ historyBtn.addEventListener("click", () => {
   loadGridHistory();
   renderGridHistory(historyContainer);
 
-  handleFormSubmission("dino-compare", async (human) => {
+  handleFormSubmission("dino-compare", (human) => {
     dinos.forEach((dino) => {
-      dino.facts = dino.getAllFacts(human);
+      const randomFact = getRandomElement(dino.getAllFacts(human));
+      dino.facts = [randomFact];
     });
 
     const pigeonIndex = dinos.findIndex((dino) => dino.species.toLowerCase() === "pigeon");
@@ -54,7 +56,7 @@ historyBtn.addEventListener("click", () => {
       ...selectedDinos.slice(4, 6),
       ...selectedDinos.slice(6, 7),
       pigeon,
-    ];
+    ]
 
     renderGrid(gridContainer, tiles);
 

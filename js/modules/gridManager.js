@@ -15,7 +15,7 @@ function createTile(data) {
   tile.appendChild(image);
 
   const fact = document.createElement("p");
-  fact.textContent = getRandomElement(data.facts) || "No facts available.";
+  fact.textContent = data.facts?.at(-1) || "No facts available.";
   tile.appendChild(fact);
 
   if (data.species && typeof data.playRoar === "function") {
