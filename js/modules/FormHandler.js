@@ -12,8 +12,8 @@ export function handleFormSubmission(formId, callback) {
     const weight = parseInt(document.getElementById("weight").value) || 0;
     const diet = document.getElementById("diet").value;
 
-    if (!name || feet <= 0 || weight <= 0 || !diet) {
-      console.error("Please fill all fields correctly.");
+    if (!name || feet < 0 || inches < 0 || weight <= 0 || !diet) {
+      alert("Please fill all fields correctly.");
       return;
     }
 
